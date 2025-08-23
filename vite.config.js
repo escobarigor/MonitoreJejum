@@ -6,10 +6,10 @@ import path from 'path'
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [
-    react(),
+    react( ),
     tailwindcss()
   ],
-  base: '/MonitoreJejum/', // Este deve ser o nome do seu repositório
+  base: './', // CORRIGIDO: Usando caminho relativo simples para o GitHub Pages
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "./src"),
