@@ -9,7 +9,7 @@ export default defineConfig({
     react(  ),
     tailwindcss()
   ],
-  base: './', // CORRIGIDO: Alterado para caminho relativo simples
+  base: '/MonitoreJejum/', // Alterado para o nome do repositório
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "./src"),
