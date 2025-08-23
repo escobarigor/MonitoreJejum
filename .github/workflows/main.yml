@@ -3,30 +3,33 @@ name: Deploy to GitHub Pages
 on:
   push:
     branches:
-      - master # Certifique-se de que este é o seu branch principal no GitHub
+      - main # Certifique-se de que esta é a sua branch principal no GitHub
 
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout
-        uses: actions/checkout@v3
+      - name: Checkout do repositório
+        uses: actions/checkout@v4
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v3
+      - name: Configurar Node.js
+        uses: actions/setup-node@v4
         with:
-          node-version: '18'
+          node-version: '20' # Use a versão do Node.js que você está usando no seu projeto
 
-      - name: Install dependencies
-        run: npm install --legacy-peer-deps
+      - name: Instalar pnpm
+        run: npm install -g pnpm
 
-      - name: Build
-        run: node ./node_modules/vite/bin/vite.js build
+      - name: Instalar dependências
+        run: pnpm install
 
-      - name: Deploy
-        uses: peaceiris/actions-gh-pages@v3
+      - name: Construir o projeto
+        run: pnpm run build
+
+      - name: Deploy para GitHub Pages
+        uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./dist
-          # CNAME: example.com # Descomente e configure se você usa um domínio personalizado
+          publish_dir: ./dist # Certifique-se de que esta é a pasta onde o seu build é gerado
+          # cname: monitorejejum.com # Opcional: Se você tiver um domínio personalizado, adicione-o aqui
