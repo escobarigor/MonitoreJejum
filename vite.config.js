@@ -6,7 +6,7 @@ import path from 'path'
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react( ), tailwindcss()],
-  base: '/MonitoreJejum/', // Mantenha apenas esta linha para o base
+  base: '/MonitoreJejum/', // Certifique-se de que esta linha está correta para o seu repositório
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "./src"),
@@ -16,4 +16,14 @@ export default defineConfig({
     host: '0.0.0.0',
     port: 5173,
   },
+  build: {
+    outDir: 'dist',
+    rollupOptions: {
+      output: {
+        entryFileNames: `assets/[name].js`,
+        chunkFileNames: `assets/[name].js`,
+        assetFileNames: `assets/[name].[ext]`
+      }
+    }
+  }
 })
