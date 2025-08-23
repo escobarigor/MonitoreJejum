@@ -34,7 +34,7 @@ function App() {
 
     // Load fasting records from localStorage
     const savedFastingRecords = JSON.parse(localStorage.getItem('fastingRecords')) || [];
-    setFastingRecords(savedFavedFastingRecords);
+    setFastingRecords(savedFastingRecords);
 
     // Load weight records from localStorage
     const savedWeightRecords = JSON.parse(localStorage.getItem('weightRecords')) || [];
