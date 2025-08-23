@@ -1,0 +1,1098 @@
+/* Base styles - Mobile First */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin: 0;
+  padding: 0;
+  transition: background-color 0.3s, color 0.3s;
+  background-color: #f5f1e8;
+  color: #333;
+  overflow-x: hidden;
+}
+
+.App {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  max-width: 100vw;
+}
+
+/* Header - Mobile optimized */
+.App-header {
+  background: linear-gradient(135deg, #ff6b35 0%, #f7931e 100%);
+  padding: 20px 16px;
+  text-align: center;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  position: relative;
+}
+
+.App-header h1 {
+  margin: 0 0 16px 0;
+  color: white;
+  font-size: 1.8rem;
+  font-weight: 700;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+.theme-selector {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin: 0 auto; /* Centraliza o container dos botões */
+}
+
+.theme-selector button {
+  background-color: rgba(255, 255, 255, 0.2);
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  color: white;
+  padding: 8px 16px;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: all 0.3s;
+  font-weight: 600;
+  font-size: 14px;
+  min-width: 70px;
+}
+
+.theme-selector button:hover {
+  background-color: rgba(255, 255, 255, 0.3);
+  transform: translateY(-1px);
+}
+
+.theme-selector button.active {
+  background-color: rgba(255, 255, 255, 0.9);
+  color: #ff6b35;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Navigation - Mobile tabs */
+.App-nav {
+  display: flex;
+  background-color: #f5f1e8;
+  padding: 12px 8px;
+  gap: 8px;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  justify-content: center; /* Centraliza os botões de navegação */
+}
+
+.App-nav button {
+  background: white;
+  border: 2px solid #e0d5c7;
+  padding: 12px 16px;
+  cursor: pointer;
+  font-size: 14px;
+  color: #666;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.3s;
+  border-radius: 25px;
+  white-space: nowrap;
+  min-width: fit-content;
+  font-weight: 500;
+  flex-shrink: 0;
+}
+
+.App-nav button:hover {
+  background-color: #fff8f0;
+  border-color: #ff6b35;
+  color: #ff6b35;
+}
+
+.App-nav button.active {
+  background: linear-gradient(135deg, #ff6b35 0%, #f7931e 100%);
+  color: white;
+  border-color: #ff6b35;
+  box-shadow: 0 3px 12px rgba(255, 107, 53, 0.4);
+  transform: translateY(-1px);
+}
+
+.nav-icon {
+  font-size: 16px;
+}
+
+/* Main Content - Mobile optimized */
+.App-content {
+  flex-grow: 1;
+  padding: 16px;
+  background-color: #f5f1e8;
+  max-width: 100%;
+}
+
+.tab-content h2 {
+  color: #ff6b35;
+  margin-bottom: 20px;
+  font-size: 1.6rem;
+  font-weight: 700;
+  text-align: center;
+}
+
+/* Fasting Tab - Mobile focused */
+.fasting-tab {
+  text-align: center;
+  padding: 0 8px;
+}
+
+.timer-container {
+  margin: 30px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.circular-progress {
+  position: relative;
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(135deg, #fff8f0 0%, #f0e6d2 100%);
+  box-shadow: 0 8px 32px rgba(255, 107, 53, 0.2);
+  border: 3px solid rgba(255, 107, 53, 0.1);
+}
+
+.progress-ring-circle-bg {
+  stroke: #e0d5c7;
+}
+
+.progress-ring-circle {
+  stroke: #ff6b35;
+  transition: stroke-dashoffset 0.3s;
+  transform: rotate(-90deg);
+  transform-origin: 50% 50%;
+}
+
+.timer-display {
+  position: absolute;
+  text-align: center;
+}
+
+.timer-display .time {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #ff6b35;
+  margin-bottom: 8px;
+  font-family: 'Courier New', monospace;
+}
+
+.timer-display .stage-info {
+  font-size: 0.85rem;
+  color: #666;
+}
+
+.current-stage {
+  font-weight: 600;
+  color: #ff6b35;
+  margin-bottom: 4px;
+}
+
+.next-stage {
+  color: #999;
+  font-size: 0.8rem;
+}
+
+.fasting-controls {
+  margin-top: 30px;
+}
+
+.action-btn {
+  background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
+  color: white;
+  border: none;
+  padding: 16px 32px;
+  border-radius: 30px;
+  font-size: 1.1em;
+  cursor: pointer;
+  transition: all 0.3s;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 700;
+  box-shadow: 0 4px 20px rgba(76, 175, 80, 0.4);
+  min-width: 200px;
+  justify-content: center;
+  margin: 0 auto; /* Centraliza o botão de ação */
+}
+
+.action-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 25px rgba(76, 175, 80, 0.6);
+}
+
+.action-btn:active {
+  transform: translateY(0);
+}
+
+.end-btn {
+  background: linear-gradient(135deg, #f44336 0%, #d32f2f 100%);
+  box-shadow: 0 4px 20px rgba(244, 67, 54, 0.4);
+}
+
+.end-btn:hover {
+  box-shadow: 0 6px 25px rgba(244, 67, 54, 0.6);
+}
+
+.btn-icon {
+  font-size: 18px;
+}
+
+/* Data Tab - Mobile optimized */
+.data-tab {
+  max-width: 100%;
+  padding: 0 8px;
+}
+
+.weight-input-section {
+  background: white;
+  padding: 20px;
+  border-radius: 16px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+  border: 2px solid #f0e6d2;
+}
+
+.weight-input-section h3 {
+  margin-top: 0;
+  color: #ff6b35;
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.weight-input {
+  padding: 14px 16px;
+  border: 2px solid #e0d5c7;
+  border-radius: 12px;
+  font-size: 16px;
+  transition: border-color 0.3s;
+  background-color: #fff8f0;
+}
+
+.weight-input:focus {
+  outline: none;
+  border-color: #ff6b35;
+  background-color: white;
+}
+
+.register-btn {
+  background: linear-gradient(135deg, #ff6b35 0%, #f7931e 100%);
+  color: white;
+  border: none;
+  padding: 14px 20px;
+  border-radius: 12px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.3s;
+  font-size: 16px;
+  display: block; /* Para que margin auto funcione */
+  margin: 0 auto; /* Centraliza o botão */
+}
+
+.register-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 15px rgba(255, 107, 53, 0.4);
+}
+
+.recent-weights {
+  background: white;
+  padding: 20px;
+  border-radius: 16px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  border: 2px solid #f0e6d2;
+}
+
+.recent-weights h3 {
+  margin-top: 0;
+  color: #ff6b35;
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.weight-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.weight-list li {
+  padding: 12px 0;
+  border-bottom: 1px solid #f0e6d2;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 15px;
+}
+
+.weight-list li:last-child {
+  border-bottom: none;
+}
+
+/* Progress Tab - Mobile cards */
+.progress-tab {
+  max-width: 100%;
+  padding: 0 8px;
+}
+
+.progress-summary {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.progress-card {
+  background: white;
+  padding: 20px;
+  border-radius: 16px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  transition: transform 0.3s;
+  border: 2px solid #f0e6d2;
+}
+
+.progress-card:hover {
+  transform: translateY(-2px);
+}
+
+.progress-card h3 {
+  margin: 0 0 12px 0;
+  color: #666;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.progress-number {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #ff6b35;
+  margin: 0;
+}
+
+/* History Tab - Mobile optimized */
+.history-tab {
+  max-width: 100%;
+  padding: 0 8px;
+}
+
+.history-header {
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+.stats-section {
+  background: white;
+  padding: 20px;
+  border-radius: 16px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+  border: 2px solid #f0e6d2;
+}
+
+.stats-section h3 {
+  margin-top: 0;
+  color: #ff6b35;
+  font-size: 1.3rem;
+  margin-bottom: 16px;
+  font-weight: 600;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 12px;
+}
+
+.stat-card {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px;
+  background: #fff8f0;
+  border-radius: 12px;
+  border-left: 4px solid #ff6b35;
+}
+
+.stat-icon {
+  font-size: 20px;
+}
+
+.stat-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.stat-label {
+  font-size: 0.85rem;
+  color: #666;
+  margin-bottom: 2px;
+}
+
+.stat-value {
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: #333;
+}
+
+.filters-section {
+  background: white;
+  padding: 20px;
+  border-radius: 16px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+  border: 2px solid #f0e6d2;
+}
+
+.filters-section h3 {
+  margin-top: 0;
+  color: #ff6b35;
+  font-size: 1.3rem;
+  margin-bottom: 16px;
+  font-weight: 600;
+}
+
+.filters-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.filter-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.filter-group label {
+  font-weight: 600;
+  color: #555;
+  font-size: 0.9rem;
+}
+
+.filter-input,
+.filter-select {
+  padding: 10px 12px;
+  border: 2px solid #e0d5c7;
+  border-radius: 8px;
+  font-size: 14px;
+  transition: border-color 0.3s;
+  background-color: #fff8f0;
+}
+
+.filter-input:focus,
+.filter-select:focus {
+  outline: none;
+  border-color: #ff6b35;
+  background-color: white;
+}
+
+.filter-actions {
+  text-align: center;
+}
+
+.clear-filters-btn {
+  background: #fff8f0;
+  color: #ff6b35;
+  border: 2px solid #e0d5c7;
+  padding: 10px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.3s;
+  display: block; /* Para que margin auto funcione */
+  margin: 0 auto; /* Centraliza o botão */
+}
+
+.clear-filters-btn:hover {
+  background: #f0e6d2;
+  border-color: #ff6b35;
+}
+
+.fasting-list-section {
+  background: white;
+  padding: 20px;
+  border-radius: 16px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  border: 2px solid #f0e6d2;
+}
+
+.fasting-list-section h3 {
+  margin-top: 0;
+  color: #ff6b35;
+  font-size: 1.3rem;
+  margin-bottom: 16px;
+  font-weight: 600;
+}
+
+.no-records {
+  text-align: center;
+  padding: 30px 20px;
+  color: #666;
+}
+
+.fasting-records {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.fasting-record {
+  border: 2px solid #f0e6d2;
+  border-radius: 12px;
+  padding: 16px;
+  transition: all 0.3s;
+  background: #fff8f0;
+}
+
+.fasting-record:hover {
+  border-color: #ff6b35;
+  box-shadow: 0 2px 12px rgba(255, 107, 53, 0.2);
+}
+
+.record-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.record-date {
+  font-weight: 600;
+  color: #333;
+  font-size: 1rem;
+}
+
+.record-stage {
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.stage-queima-de-glicose {
+  background: #fff3cd;
+  color: #856404;
+}
+
+.stage-queima-de-gordura {
+  background: #d4edda;
+  color: #155724;
+}
+
+.stage-cetose-leve {
+  background: #cce5ff;
+  color: #004085;
+}
+
+.stage-autofagia {
+  background: #e2e3ff;
+  color: #383d41;
+}
+
+.stage-cetose-profunda {
+  background: #f8d7da;
+  color: #721c24;
+}
+
+.stage-regeneração-imunológica {
+  background: #d1ecf1;
+  color: #0c5460;
+}
+
+.record-details {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 8px;
+  font-size: 0.9rem;
+  color: #666;
+}
+
+.record-time,
+.record-duration {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+/* Theme variations */
+body.theme-dark {
+  background-color: #1a1a1a;
+  color: #f0f0f0;
+}
+
+body.theme-dark .App-header {
+  background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+}
+
+body.theme-dark .App-nav {
+  background-color: #2c2c2c;
+}
+
+body.theme-dark .App-nav button {
+  background-color: #3a3a3a;
+  border-color: #555;
+  color: #ccc;
+}
+
+body.theme-dark .App-nav button.active {
+  background: linear-gradient(135deg, #74b9ff 0%, #0984e3 100%);
+  border-color: #74b9ff;
+}
+
+body.theme-dark .App-content {
+  background-color: #1a1a1a;
+}
+
+body.theme-dark .weight-input-section,
+body.theme-dark .recent-weights,
+body.theme-dark .progress-card,
+body.theme-dark .stats-section,
+body.theme-dark .filters-section,
+body.theme-dark .fasting-list-section {
+  background-color: #2c2c2c;
+  border-color: #444;
+}
+
+body.theme-dark .fasting-record {
+  background-color: #2a2a2a;
+  border-color: #444;
+}
+
+body.theme-warm {
+  background-color: #fff8e1;
+  color: #5d4037;
+}
+
+body.theme-warm .App-header {
+  background: linear-gradient(135deg, #ff8a65 0%, #ff7043 100%);
+}
+
+body.theme-warm .App-nav {
+  background-color: #fff3e0;
+}
+
+body.theme-warm .App-nav button.active {
+  background: linear-gradient(135deg, #ff8a65 0%, #ff7043 100%);
+}
+
+/* Mobile specific adjustments */
+@media (max-width: 768px) {
+  .App-header h1 {
+    font-size: 1.6rem;
+  }
+  
+  .theme-selector button {
+    padding: 6px 12px;
+    font-size: 13px;
+  }
+  
+  .App-nav {
+    padding: 8px;
+  }
+  
+  .App-nav button {
+    padding: 10px 14px;
+    font-size: 13px;
+  }
+  
+  .circular-progress {
+    width: 180px;
+    height: 180px;
+  }
+  
+  .timer-display .time {
+    font-size: 1.8rem;
+  }
+  
+  .action-btn {
+    padding: 14px 28px;
+    font-size: 1rem;
+    min-width: 180px;
+  }
+  
+  .stats-grid,
+  .filters-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .progress-summary {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 480px) {
+  .App-content {
+    padding: 12px;
+  }
+  
+  .circular-progress {
+    width: 160px;
+    height: 160px;
+  }
+  
+  .timer-display .time {
+    font-size: 1.6rem;
+  }
+  
+  .record-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .record-details {
+    grid-template-columns: 1fr;
+  }
+  
+  .progress-summary {
+    grid-template-columns: 1fr;
+  }
+}
+
+
+
+/* Dicas Tab - Mobile optimized */
+.dicas-tab {
+  max-width: 100%;
+  padding: 0 8px;
+}
+
+.dicas-section {
+  background: white;
+  padding: 20px;
+  border-radius: 16px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+  border: 2px solid #f0e6d2;
+}
+
+.dicas-section h3 {
+  margin-top: 0;
+  color: #ff6b35;
+  font-size: 1.3rem;
+  margin-bottom: 16px;
+  font-weight: 600;
+}
+
+.dicas-section p {
+  line-height: 1.6;
+  margin-bottom: 12px;
+}
+
+.dicas-section ul {
+  list-style: disc;
+  padding-left: 20px;
+}
+
+.dicas-section li {
+  margin-bottom: 8px;
+}
+
+
+
+
+.timer-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 250px; /* Garante espaço suficiente para centralização vertical */
+  margin: 30px 0;
+}
+
+.circular-progress {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto; /* Centraliza horizontalmente */
+  position: relative;
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #fff8f0 0%, #f0e6d2 100%);
+  box-shadow: 0 8px 32px rgba(255, 107, 53, 0.2);
+  border: 3px solid rgba(255, 107, 53, 0.1);
+}
+
+
+
+
+.App-nav {
+  display: flex;
+  flex-direction: column; /* Coloca as linhas de navegação em coluna */
+  gap: 8px; /* Espaçamento entre as linhas */
+  padding: 12px 8px;
+  background-color: #f5f1e8;
+}
+
+.nav-row {
+  display: flex;
+  justify-content: center; /* Centraliza os botões dentro de cada linha */
+  gap: 8px;
+  flex-wrap: wrap; /* Permite que os botões quebrem para a próxima linha se não houver espaço */
+}
+
+
+
+
+/* Tips Tab */
+.tips-tab {
+  max-width: 100%;
+  padding: 0 8px;
+}
+
+.tips-tab h2 {
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+.tips-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 16px;
+}
+
+.tip-card {
+  background: white;
+  padding: 20px;
+  border-radius: 16px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  border: 2px solid #f0e6d2;
+  display: flex;
+  align-items: flex-start;
+  gap: 15px;
+  transition: transform 0.3s;
+}
+
+.tip-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 25px rgba(0, 0, 0, 0.15);
+}
+
+.tip-icon {
+  font-size: 2.5rem;
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+.tip-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.tip-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #ff6b35;
+  margin-bottom: 5px;
+}
+
+.tip-description {
+  font-size: 0.9rem;
+  color: #666;
+  line-height: 1.4;
+}
+
+/* Responsive adjustments */
+@media (min-width: 768px) {
+  .App-nav {
+    flex-wrap: wrap;
+    height: auto;
+    padding: 16px;
+  }
+
+  .nav-row {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    gap: 12px;
+  }
+
+  .nav-row:first-child {
+    margin-bottom: 12px; /* Espaço entre as duas linhas de botões */
+  }
+
+  .App-nav button {
+    min-width: 120px;
+    padding: 14px 20px;
+    font-size: 15px;
+  }
+
+  .App-content {
+    padding: 24px;
+  }
+
+  .timer-container {
+    margin: 40px 0;
+  }
+
+  .circular-progress {
+    width: 250px;
+    height: 250px;
+  }
+
+  .progress-ring {
+    width: 250px;
+    height: 250px;
+  }
+
+  .progress-ring-circle-bg,
+  .progress-ring-circle {
+    r: 110;
+    cx: 125;
+    cy: 125;
+  }
+
+  .timer-display .time {
+    font-size: 2.8rem;
+  }
+
+  .timer-display .stage-info {
+    font-size: 1rem;
+  }
+
+  .action-btn {
+    min-width: 250px;
+    padding: 18px 36px;
+    font-size: 1.2em;
+  }
+
+  .data-tab,
+  .progress-tab,
+  .history-tab,
+  .tips-tab {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0;
+  }
+
+  .weight-input-section,
+  .recent-weights,
+  .stats-section,
+  .filters-section,
+  .tip-card {
+    padding: 25px;
+  }
+
+  .input-group {
+    flex-direction: row;
+    gap: 15px;
+  }
+
+  .weight-input {
+    flex-grow: 1;
+  }
+
+  .progress-summary,
+  .stats-grid,
+  .filters-grid,
+  .tips-grid {
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  }
+
+  .tips-grid {
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  }
+}
+
+@media (min-width: 1024px) {
+  .App-header {
+    padding: 25px 20px;
+  }
+
+  .App-header h1 {
+    font-size: 2.2rem;
+  }
+
+  .theme-selector {
+    gap: 12px;
+  }
+
+  .theme-selector button {
+    padding: 10px 20px;
+    font-size: 15px;
+  }
+
+  .App-nav {
+    padding: 18px 20px;
+  }
+
+  .App-nav button {
+    min-width: 140px;
+    padding: 16px 22px;
+    font-size: 16px;
+  }
+
+  .App-content {
+    padding: 30px;
+  }
+
+  .timer-container {
+    margin: 50px 0;
+  }
+
+  .circular-progress {
+    width: 300px;
+    height: 300px;
+  }
+
+  .progress-ring {
+    width: 300px;
+    height: 300px;
+  }
+
+  .progress-ring-circle-bg,
+  .progress-ring-circle {
+    r: 135;
+    cx: 150;
+    cy: 150;
+  }
+
+  .timer-display .time {
+    font-size: 3.5rem;
+  }
+
+  .timer-display .stage-info {
+    font-size: 1.1rem;
+  }
+
+  .action-btn {
+    min-width: 300px;
+    padding: 20px 40px;
+    font-size: 1.3em;
+  }
+
+  .data-tab,
+  .progress-tab,
+  .history-tab,
+  .tips-tab {
+    max-width: 1000px;
+  }
+
+  .progress-summary,
+  .stats-grid,
+  .filters-grid,
+  .tips-grid {
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  }
+
+  .tips-grid {
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  }
+}
+
+
