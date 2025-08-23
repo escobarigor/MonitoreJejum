@@ -9,6 +9,11 @@ jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
 
+    permissions:
+      contents: write # Permissão para escrever no repositório
+      pages: write # Permissão para gerenciar o GitHub Pages
+      id-token: write # Necessário para autenticação com OIDC
+
     steps:
       - name: Checkout do repositório
         uses: actions/checkout@v4
@@ -27,9 +32,14 @@ jobs:
       - name: Construir o projeto
         run: pnpm run build
 
-      - name: Deploy para GitHub Pages
-        uses: peaceiris/actions-gh-pages@v4
+      - name: Configurar GitHub Pages
+        uses: actions/configure-pages@v4
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./dist # Certifique-se de que esta é a pasta onde o seu build é gerado
-          # cname: monitorejejum.com # Opcional: Se você tiver um domínio personalizado, adicione-o aqui
+          path: './dist' # Certifique-se de que esta é a pasta onde o seu build é gerado
+
+      - name: Deploy para GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
