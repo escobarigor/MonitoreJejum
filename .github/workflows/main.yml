@@ -9,6 +9,9 @@ jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
 
+    environment:
+      name: github-pages # Adicionado: Configuração do ambiente para o GitHub Pages
+
     permissions:
       contents: write # Permissão para escrever no repositório
       pages: write # Permissão para gerenciar o GitHub Pages
