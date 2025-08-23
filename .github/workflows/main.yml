@@ -9,9 +9,6 @@ jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
 
-    environment:
-      name: github-pages # Adicionado: Configuração do ambiente para o GitHub Pages
-
     permissions:
       contents: write # Permissão para escrever no repositório
       pages: write # Permissão para gerenciar o GitHub Pages
@@ -35,14 +32,9 @@ jobs:
       - name: Construir o projeto
         run: pnpm run build
 
-      - name: Configurar GitHub Pages
-        uses: actions/configure-pages@v4
-
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
-        with:
-          path: './dist' # Certifique-se de que esta é a pasta onde o seu build é gerado
-
       - name: Deploy para GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./dist
+          publish_branch: gh-pages # ADICIONE/VERIFIQUE ESTA LINHA
