@@ -5,7 +5,10 @@ import path from 'path'
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [react( ), tailwindcss()],
+  plugins: [
+    react( ),
+    tailwindcss()
+  ],
   base: '/MonitoreJejum/', // Certifique-se de que esta linha está correta para o seu repositório
   resolve: {
     alias: {
@@ -18,11 +21,12 @@ export default defineConfig({
   },
   build: {
     outDir: 'dist',
+    assetsDir: 'assets',
     rollupOptions: {
       output: {
-        entryFileNames: `assets/[name].js`,
-        chunkFileNames: `assets/[name].js`,
-        assetFileNames: `assets/[name].[ext]`
+        entryFileNames: `assets/[name]-[hash].js`,
+        chunkFileNames: `assets/[name]-[hash].js`,
+        assetFileNames: `assets/[name]-[hash].[ext]`
       }
     }
   }
