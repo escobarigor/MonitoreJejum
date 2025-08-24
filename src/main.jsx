@@ -10,3 +10,19 @@ createRoot(document.getElementById('root')).render(
     <App />
   </StrictMode>,
 )
+
+// Código para registrar o Service Worker
+if (
+  'serviceWorker' in navigator &&
+  (window.location.protocol === 'https:' || window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' )
+) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('/sw.js')
+      .then(registration => {
+        console.log('Service Worker registrado com sucesso:', registration.scope);
+      })
+      .catch(error => {
+        console.error('Falha no registro do Service Worker:', error);
+      });
+  });
+}
