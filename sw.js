@@ -1,1 +1,28 @@
-if(!self.define){let e,i={};const n=(n,s)=>(n=new URL(n+".js",s).href,i[n]||new Promise(i=>{if("document"in self){const e=document.createElement("script");e.src=n,e.onload=i,document.head.appendChild(e)}else e=n,importScripts(n),i()}).then(()=>{let e=i[n];if(!e)throw new Error(`Module ${n} didn’t register its module`);return e}));self.define=(s,d)=>{const r=e||("document"in self?document.currentScript.src:"")||location.href;if(i[r])return;let o={};const c=e=>n(e,r),f={module:{uri:r},exports:o,require:c};i[r]=Promise.all(s.map(e=>f[e]||c(e))).then(e=>(d(...e),o))}}define(["./workbox-3e8df8c8"],function(e){"use strict";self.skipWaiting(),e.clientsClaim(),e.precacheAndRoute([{url:"assets/index-BEJr1GoH.css",revision:null},{url:"assets/index-qLVR-YsZ.js",revision:null},{url:"favicon.ico",revision:"2df217a6efdfdc4df61a847995e6ba74"},{url:"icons/icon-192x192.png",revision:"33f78c0524dd6e1ff6084ad162ffd67e"},{url:"icons/icon-512x512.png",revision:"b7d1876c7617a3d1dd733b4188547bf4"},{url:"icons/pwa-192x192.png",revision:"33f78c0524dd6e1ff6084ad162ffd67e"},{url:"icons/pwa-512x512.png",revision:"b7d1876c7617a3d1dd733b4188547bf4"},{url:"index.html",revision:"c41f674da09c2b8fd23f9066636e1ac2"},{url:"registerSW.js",revision:"30113a7dcc6c4ee7c3a7acae5d967985"},{url:"icons/pwa-192x192.png",revision:"33f78c0524dd6e1ff6084ad162ffd67e"},{url:"icons/pwa-512x512.png",revision:"b7d1876c7617a3d1dd733b4188547bf4"},{url:"manifest.webmanifest",revision:"c6b46b1e496d658603b9a1852b812f02"}],{}),e.cleanupOutdatedCaches(),e.registerRoute(new e.NavigationRoute(e.createHandlerBoundToURL("index.html")))});
+const CACHE_NAME = 'monitore-jejum-cache-v1';
+const urlsToCache = [
+  '/',
+  '/index.html',
+  '/src/main.jsx'
+];
+
+self.addEventListener('install', event => {
+  event.waitUntil(
+    caches.open(CACHE_NAME)
+      .then(cache => {
+        console.log('Service Worker: Cache aberto');
+        return cache.addAll(urlsToCache);
+      })
+  );
+});
+
+self.addEventListener('fetch', event => {
+  event.respondWith(
+    caches.match(event.request)
+      .then(response => {
+        if (response) {
+          return response;
+        }
+        return fetch(event.request);
+      })
+  );
+});
