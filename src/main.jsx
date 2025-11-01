@@ -3,7 +3,7 @@ import { createRoot } from 'react-dom/client'
 import './index.css'
 import App from './App.jsx'
 
-console.log('Script main.jsx está sendo executado!'); // Adicione esta linha
+console.log('Script main.jsx está sendo executado!');
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
@@ -11,7 +11,6 @@ createRoot(document.getElementById('root')).render(
   </StrictMode>,
 )
 
-// Código para registrar o Service Worker
 if (
   'serviceWorker' in navigator &&
   (window.location.protocol === 'https:' || window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' )

@@ -9,13 +9,12 @@ import DicasTab from './DicasTab';
 function App() {
   const [activeTab, setActiveTab] = useState('jejum');
   const [theme, setTheme] = useState('light');
-  const [fastingTime, setFastingTime] = useState(0); // in seconds
+  const [fastingTime, setFastingTime] = useState(0);
   const [isFasting, setIsFasting] = useState(false);
   const [fastingRecords, setFastingRecords] = useState([]);
   const [weightRecords, setWeightRecords] = useState([]);
   const [currentWeight, setCurrentWeight] = useState('');
 
-  // Filtros para a aba Histórico
   const [filters, setFilters] = useState({
     dateFrom: '',
     dateTo: '',
@@ -25,22 +24,15 @@ function App() {
   });
 
   useEffect(() => {
-    // Load theme from localStorage
     const savedTheme = localStorage.getItem('theme');
     if (savedTheme) {
       setTheme(savedTheme);
       document.body.className = `theme-${savedTheme}`;
     }
-
-    // Load fasting records from localStorage
     const savedFastingRecords = JSON.parse(localStorage.getItem('fastingRecords')) || [];
     setFastingRecords(savedFastingRecords);
-
-    // Load weight records from localStorage
     const savedWeightRecords = JSON.parse(localStorage.getItem('weightRecords')) || [];
     setWeightRecords(savedWeightRecords);
-
-    // Check if a fasting session was ongoing
     const lastFastingStart = localStorage.getItem('lastFastingStart');
     if (lastFastingStart) {
       const startTime = parseInt(lastFastingStart, 10);
@@ -85,7 +77,7 @@ function App() {
       startTime: new Date(startTime).toISOString(),
       endTime: new Date(endTime).toISOString(),
       duration: fastingTime,
-      stage: getFastingStage(fastingTime / 3600) // Convert seconds to hours
+      stage: getFastingStage(fastingTime / 3600)
     };
     const updatedRecords = [...fastingRecords, newRecord];
     setFastingRecords(updatedRecords);
@@ -177,16 +169,10 @@ function App() {
     return fastingRecords.filter(record => {
       const recordDate = new Date(record.startTime).toISOString().split('T')[0];
       const recordDurationHours = record.duration / 3600;
-
-      // Filter by date range
       if (filters.dateFrom && recordDate < filters.dateFrom) return false;
       if (filters.dateTo && recordDate > filters.dateTo) return false;
-
-      // Filter by duration
       if (filters.minDuration && recordDurationHours < parseFloat(filters.minDuration)) return false;
       if (filters.maxDuration && recordDurationHours > parseFloat(filters.maxDuration)) return false;
-
-      // Filter by stage
       if (filters.stage !== 'all' && record.stage !== getFastingStage(recordDurationHours)) return false;
 
       return true;
